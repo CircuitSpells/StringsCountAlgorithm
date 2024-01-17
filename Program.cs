@@ -38,6 +38,9 @@ class Program
             }
         }
 
+        private string? GetMaxKey() => CountToStringDict[MaxCount].FirstOrDefault();
+        private string? GetMinKey() => CountToStringDict[MinCount].FirstOrDefault();
+
         private void Inc(string key)
         {
             if (StringToCountDict.ContainsKey(key))
@@ -64,24 +67,6 @@ class Program
             }
         }
 
-        private void CountToStringDictAddKey(string key, int value)
-        {
-            if (CountToStringDict.ContainsKey(value))
-            {
-                CountToStringDict[value].Add(key);
-            }
-            else
-            {
-                CountToStringDict.Add(value, new HashSet<string>([key]));
-            }
-        }
-
-        private void CountToStringDictRemoveKey(string key, int value)
-        {
-            // assume that the value exists
-            CountToStringDict[value].Remove(key);
-        }
-
         // "It is guaranteed that key exists in the data structure before the decrement."
         private void Dec(string key)
         {
@@ -99,7 +84,22 @@ class Program
             }
         }
 
-        private string? GetMaxKey() => CountToStringDict[MaxCount].FirstOrDefault();
-        private string? GetMinKey() => CountToStringDict[MinCount].FirstOrDefault();
+        private void CountToStringDictAddKey(string key, int value)
+        {
+            if (CountToStringDict.ContainsKey(value))
+            {
+                CountToStringDict[value].Add(key);
+            }
+            else
+            {
+                CountToStringDict.Add(value, new HashSet<string>([key]));
+            }
+        }
+
+        private void CountToStringDictRemoveKey(string key, int value)
+        {
+            // assume that the value exists
+            CountToStringDict[value].Remove(key);
+        }
     }
 }
