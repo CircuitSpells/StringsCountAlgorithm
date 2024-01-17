@@ -15,27 +15,15 @@ class Program
         private int? maxCount = null;
         private int MaxCount
         {
-            get
-            {
-                return maxCount.HasValue ? (int)maxCount : throw new Exception("MaxCount has no value");
-            }
-            set
-            {
-                maxCount = value;
-            }
+            get => maxCount.HasValue ? (int)maxCount : throw new Exception("MaxCount has no value");
+            set => maxCount = value;
         }
 
         private int? minCount = null;
         private int MinCount
         {
-            get
-            {
-                return minCount.HasValue ? (int)minCount : throw new Exception("MinCount has no value");
-            }
-            set
-            {
-                minCount = value;
-            }
+            get => minCount.HasValue ? (int)minCount : throw new Exception("MinCount has no value");
+            set => minCount = value;
         }
 
         private string? GetMaxKey() => CountToStringDict[MaxCount].FirstOrDefault();
