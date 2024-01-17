@@ -26,6 +26,12 @@ class Program
             set => minCount = value;
         }
 
+        private void ResetCount()
+        {
+            maxCount = null;
+            minCount = null;
+        }
+
         private string? GetMaxKey() => CountToStringDict[MaxCount].FirstOrDefault();
         private string? GetMinKey() => CountToStringDict[MinCount].FirstOrDefault();
 
@@ -63,12 +69,19 @@ class Program
             {
                 StringToCountDict.Remove(key);
                 CountToStringDictRemoveKey(key, 1);
+
+                if (StringToCountDict.Count == 0)
+                {
+                    ResetCount();
+                }
             }
             else
             {
                 StringToCountDict[key] = value;
                 CountToStringDictAddKey(key, value);
                 CountToStringDictRemoveKey(key, value + 1);
+
+                MinCount = Math.Min(MinCount, value);
             }
         }
 
