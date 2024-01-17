@@ -32,6 +32,12 @@ class Program
             minCount = null;
         }
 
+        private void InitCount()
+        {
+            maxCount = 1;
+            minCount = 1;
+        }
+
         private string? GetMaxKey() => CountToStringDict[MaxCount].FirstOrDefault();
         private string? GetMinKey() => CountToStringDict[MinCount].FirstOrDefault();
 
@@ -54,9 +60,7 @@ class Program
 
                 if (StringToCountDict.Count == 1)
                 {
-                    // give MaxCount and MinCount their initial values
-                    MaxCount = 1;
-                    MinCount = 1;
+                    InitCount();
                 }
             }
         }
